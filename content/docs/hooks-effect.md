@@ -330,7 +330,7 @@ function FriendStatusWithCounter(props) {
 
 **Hook 让我们根据代码的作用将它们拆分** 而不是根据生命周期。React 将会按照指定的顺序应用 *每个* effect。
 
-### Explanation: Why Effects Run on Each Update
+### 解释：为什么 Hooks 在每次 Update 都会运行
 
 If you're used to classes, you might be wondering why the effect cleanup phase happens after every re-render, and not just once during unmounting. Let's look at a practical example to see why this design helps us create components with fewer bugs.
 
