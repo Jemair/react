@@ -332,9 +332,9 @@ function FriendStatusWithCounter(props) {
 
 ### 解释：为什么 Hooks 在每次 Update 都会运行
 
-If you're used to classes, you might be wondering why the effect cleanup phase happens after every re-render, and not just once during unmounting. Let's look at a practical example to see why this design helps us create components with fewer bugs.
+如果你习惯了 class，你一定会觉得在每次 re-render 的时候清理 effect 很奇怪。你一定很疑惑为什么不是在 unmounting 的时候清理一次就行。让我们用一些实际的例子，来解释为什么这样的设计可以让我们创建 bug 更少的组件。
 
-[Earlier on this page](#example-using-classes-1), we introduced an example `FriendStatus` component that displays whether a friend is online or not. Our class reads `friend.id` from `this.props`, subscribes to the friend status after the component mounts, and unsubscribes during unmounting:
+[前面](#example-using-classes-1) 我们介绍了一个展示好友是否在线的组件 `FriendStatus` 。我们的 class 会从 `this.props` 中读取 `friend.id`，在组件 mount 之后订阅朋友的状态，然后再 unmount 的时候取消订阅：
 
 ```js
   componentDidMount() {
