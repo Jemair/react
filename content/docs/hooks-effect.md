@@ -352,9 +352,9 @@ function FriendStatusWithCounter(props) {
   }
 ```
 
-**But what happens if the `friend` prop changes** while the component is on the screen? Our component would continue displaying the online status of a different friend. This is a bug. We would also cause a memory leak or crash when unmounting since the unsubscribe call would use the wrong friend ID.
+**但是如果在这个组件存续时， `friend` prop 改变了，会发生什么呢？** 我们的组件会继续显示另一个 friend 的在线状态。显然这是一个 bug。这同时也会导致内存泄漏，因为我们解绑的时候传入了错误的 friend ID。
 
-In a class component, we would need to add `componentDidUpdate` to handle this case:
+在 class 组件，我们需要加入 `componentDidUpdate` 来解决这个问题：
 
 ```js{8-19}
   componentDidMount() {
@@ -365,12 +365,12 @@ In a class component, we would need to add `componentDidUpdate` to handle this c
   }
 
   componentDidUpdate(prevProps) {
-    // Unsubscribe from the previous friend.id
+    // 解绑前一个 friend ID
     ChatAPI.unsubscribeFromFriendStatus(
       prevProps.friend.id,
       this.handleStatusChange
     );
-    // Subscribe to the next friend.id
+    // 订阅下一个 friend ID
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
       this.handleStatusChange
@@ -385,9 +385,9 @@ In a class component, we would need to add `componentDidUpdate` to handle this c
   }
 ```
 
-Forgetting to handle `componentDidUpdate` properly is a common source of bugs in React applications.
+忘记在 `componentDidUpdate` 中的处理是我们在 React 应用中经常遇到的 bug。
 
-Now consider the version of this component that uses Hooks:
+现在想一想用 Hooks 要怎么写
 
 ```js
 function FriendStatus(props) {
