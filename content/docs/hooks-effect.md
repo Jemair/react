@@ -387,7 +387,7 @@ function FriendStatusWithCounter(props) {
 
 忘记在 `componentDidUpdate` 中的处理是我们在 React 应用中经常遇到的 bug。
 
-现在想一想用 Hooks 要怎么写
+现在想一想用 Hooks 要怎么写：
 
 ```js
 function FriendStatus(props) {
